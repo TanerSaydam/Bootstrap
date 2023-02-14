@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap.css">
+</head>
+
+<body>
+    <h1>Bootstrap</h1>
+    <h2>Alert</h2>
+    <p class="alert alert-success">Lorem ipsum dolor sit.</p>
+    <p class="alert alert-dark">Lorem, ipsum dolor.</p>
+    <p class="alert alert-info">Lorem, ipsum dolor.</p>
+    <p class="alert alert-primary">Lorem ipsum dolor sit.</p>
+    <p class="alert alert-danger">Lorem ipsum dolor sit.</p>
+    <p class="alert alert-warning">Lorem ipsum dolor sit.</p>
+    <hr>
+    <h2>Button</h2>
+    <button class="btn btn-primary">Lorem.</button>
+    <button class="btn btn-success">Lorem.</button>
+    <button class="btn btn-warning">Lorem.</button>
+    <button class="btn btn-info">Lorem.</button>
+    <button class="btn btn-default">Lorem.</button>
+    <button class="btn btn-dark">Lorem.</button>
+    <button class="btn btn-secondary">Lorem.</button>
+    <button class="btn btn-outline-primary">
+        <span class="spinner-border spinner-border-sm"></span>   
+        Loading...
+    </button>
+    <br>
+    <br>
+    <button class="btn btn-outline-primary">Lorem.</button>
+    <button class="btn btn-outline-success">Lorem.</button>
+    <button class="btn btn-outline-warning">Lorem.</button>
+    <button class="btn btn-outline-info">Lorem.</button>
+    <button class="btn btn-outline-default">Lorem.</button>
+    <button class="btn btn-outline-dark">Lorem.</button>
+    <button class="btn btn-outline-secondary">Lorem.</button>
+    <br><br>
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-primary w-100">Lorem.</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-success w-100">Lorem.</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-danger w-100">Lorem.</button>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <button class="btn btn-primary btn-sm">Lorem.</button>
+        <button class="btn btn-primary">Lorem.</button>
+        <button class="btn btn-primary btn-lg">
+            Lorem.
+            <span class="badge bg-danger">1</span>
+        </button>
+        <button type="button" class="btn btn-primary position-relative">
+            Inbox
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                99+
+                <span class="visually-hidden">unread messages</span>
+            </span>
+        </button>
+    </div>
+    <hr>
+    <h2>Collapse</h2>
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+            aria-controls="collapseExample">
+            Link with href
+        </a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+            Button with data-bs-target
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the
+            user activates the relevant trigger.
+        </div>
+    </div>
+    <hr>
+    <h2>Modal</h2>
+    <button class="btn btn-outline-primary w-100 btn-lg" data-bs-target="#example" data-bs-toggle="modal">Modal'ı
+        Çağır</button>
+
+    <div class="modal" id="example" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>Header</h1>
+                    <button type="button" id="exampleCloseBtn" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet consectetur 
+                        Nihil, quibusdam nisi ratione, pariatur accusamus aut cum quia illum excepturi officia
+                        voluptate. Perferendis dignissimos veniam fugit a assumenda cum mollitia rerum. Molestias cumque
+                        magnam earum voluptate, facere amet sed.</p>
+                </div>
+                <div class="modal-footer">
+                    <h3>Footer</h3>
+                    <button onclick="closeExampleModel()" class="btn btn-outline-danger w-100">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeExampleModel() {
+            let element = document.getElementById("exampleCloseBtn");
+            element.click();
+        }
+    </script>
+
+    <hr>
+    <h2>Toast</h2>
+    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Hello, world! This is a toast message.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+        if (toastTrigger) {
+            toastTrigger.addEventListener('click', () => {
+                const toast = new bootstrap.Toast(toastLiveExample)
+
+                toast.show()
+            })
+        }
+    </script>
+
+    <hr>
+    <h2>Validation Input</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control is-invalid">
+            <div class="invalid-feedback">
+                asdasdasd
+            </div>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control is-valid">
+            <div class="valid-feedback">
+                asdasdasd
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 12 column -->
+    <div class="row" style="margin-bottom: 2000px;">
+        <div class="col-sm-4"></div>
+        <div class="col-md-4"></div>
+        <div class="col-lg-4"></div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./favico.png">
+    <title>e-Ticaret App v.1.0</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #F1F1F1;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My e-Ticaret</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="showMyOrder()" href="#" data-bs-toggle="modal" data-bs-target="#orderModal">
+                            Siparişlerim
+                            <span class="badge bg-primary" id="orderSpanCount"></span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#basketModal"
+                        onclick="setBasketModalTable()" class="btn btn-primary position-relative mx-3" title="Sepetim">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span id="basketSpanElement"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <span id="basketCount"></span>
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Carousel -->
+    <!-- Carousel -->
+
+    <!-- Product Cards -->
+
+    <!-- Product Cards -->
+
+    <div id="products">
+
+    </div>
+
+
+    <!-- Sepet Model -->
+    <div class="modal fade" id="basketModal">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sepetim</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="basketModalCloseBtn"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered" id="basketTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Ürün Resmi</th>
+                                <th>Ürün Adet</th>
+                                <th>Fiyat</th>
+                                <th>Toplam</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="basketTBody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="button" id="paymentBtn" class="btn btn-primary" onclick="pay()">Ödeme Yap</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sepet Model -->
+
+    <!-- Sipariş Model -->
+    <div class="modal fade" id="orderModal">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Siparişlerim</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="orderModalCloseBtn"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered" id="orderTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Sipariş Tarihi</th>
+                                <th>Ürünler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderTBody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sepet Model -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/dc59d75dac.js" crossorigin="anonymous"></script>
+
+
+    <script>
+        let products = [
+            {
+                name: "Oyuncu Koltuğu",
+                image: "https://www.xdrive.com.tr/httpswwwxdrivecomtrhttpswwwxdrivecomtrxdrive-15li-profesyonel-oyuncu-koltugu-kirmizi-siyah-76294-62-B.webp",
+                price: 100,
+                stock: 5
+            },
+            {
+                name: "Oyuncu Bilgisayarı",
+                image: "https://www.cimri.com/blog/wp-content/uploads/2017/05/oyuncu-bilgisayarlar%C4%B1-2.jpg",
+                price: 200,
+                stock: 10
+            },
+            {
+                name: "Oyuncu Klavyesi",
+                image: "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_86545437/mobile_786_587_png/TRUST-23760-GXT856-Torac-Oyuncu-Klavyesi-Siyah",
+                price: 100,
+                stock: 5
+            },
+            {
+                name: "Oyuncu Hopörler",
+                image: "https://productimages.hepsiburada.net/s/52/375/11123134955570.jpg",
+                price: 500,
+                stock: 7
+            },
+            {
+                name: "Oyuncu Masası",
+                image: "https://www.atlantixgaming.com/wp-content/uploads/2018/06/Atlantix-Oyuncu-Masasi-Siyah-1.png",
+                price: 4000,
+                stock: 1
+            },
+            {
+                name: "Oyuncu Monitör",
+                image: "https://cdn.cimri.io/image/1000x1000/samsunglsagnuxufkavislioyuncumonitr_632031659.jpg",
+                price: 3000,
+                stock: 2
+            }
+        ]
+
+        let baskets = [];
+        let orders = [];
+
+        showProducts();
+        setBasketCount();
+        checkBasketCountForPaymentBtn();
+        setOrderSpanCount();
+
+        function showProducts() {
+            let count = products.length;
+            let element = `
+            <div class="row mt-4" style="text-align: center; margin-left: 1px; margin-right: 1px;">`
+            for (let i = 0; i < count; i++) {
+                element += `                           
+        <div class="col-md-3 mt-2">
+            <div class="card">
+                <img src="${products[i].image}" class="card-img-top" alt="..." style="width:100%; height:220px; object-fit: cover;object-position: 5px 20%;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        ${products[i].name}
+                    </h5>
+                    <span class="card-text">
+                        <span 
+                        class="text-danger" 
+                        style="font-weight: 700;">
+                            Ücret:
+                        </span> ${products[i].price} ₺
+                    </span>
+                    <br>
+                    <span class="card-text">
+                        <span 
+                            class="text-danger" 
+                        style="font-weight: 700;">
+                            Kalan:
+                        </span> ${products[i].stock}
+                    </span>
+                    <hr>
+                    <a href="#" onclick="addBasket(${i})" class="btn btn-outline-success mt-1">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        Sepete Ekle
+                    </a>
+                </div>
+            </div>
+        </div>      
+                `
+            }
+            element += "</div>";
+            let pdoructsElement = document.getElementById("products");
+            pdoructsElement.innerHTML = element;
+        }
+
+        function setBasketCount() {
+            let element = document.getElementById("basketCount");
+            let basketSpanElement = document.getElementById("basketSpanElement")
+            if (baskets.length == 0) {
+                basketSpanElement.className += "hidden"
+            } else {
+                basketSpanElement.className = "position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            }
+            element.innerText = baskets.length;
+        }
+
+        function addBasket(index) {
+            baskets.push(products[index]);
+            setBasketCount();
+            checkBasketCountForPaymentBtn();
+        }
+
+        function setBasketModalTable() {
+            let table = document.getElementById("basketTable");
+            let body = document.getElementById("basketTBody");
+            // body.remove();
+
+            // let newBody = document.createElement("tbody");
+            // newBody.id="basketTBody";
+            let element = "";
+            for (let i = 0; i < baskets.length; i++) {
+                element += `
+                <tr id="trElement${i}">
+                    <td>${i + 1}</td>
+                    <td>${baskets[i].name}</td>
+                    <td><img src="${baskets[i].image}" width="100"></td>
+                    <td>1</td>
+                    <td>${baskets[i].price}</td>
+                    <td>${baskets[i].price * 1}</td>
+                    <td>
+                        <button onclick="removeBasketById(${i})" class="btn btn-outline-danger btn-sm">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `
+            }
+
+            body.innerHTML = element;
+
+        }
+
+        function removeBasketById(index) {
+            baskets.splice(index, 1);
+
+            setBasketCount();
+            let trElement = document.getElementById("trElement" + index);
+            trElement.remove();
+            checkBasketCountForPaymentBtn();
+        }
+
+        function checkBasketCountForPaymentBtn() {
+            let paymentBtn = document.getElementById("paymentBtn");
+            if (baskets.length == 0) {
+                try {
+                    paymentBtn.setAttribute("disabled", "disabled");
+                } catch (e) {
+
+                }
+
+            } else {
+                try {
+                    paymentBtn.removeAttribute("disabled");
+                } catch (e) {
+
+                }
+
+            }
+        }
+
+        function pay() {
+            let total =0;
+            baskets.forEach(element=>{
+                total += element.price;
+            })
+            let order = {
+                "date": new Date(),
+                "baskets": baskets,
+                "total": total
+            }
+
+            baskets = [];           
+
+            orders.push(order);
+
+            setOrderSpanCount();
+            setBasketCount();
+            setBasketModalTable();
+            checkBasketCountForPaymentBtn();
+
+            let modelCloseBtn = document.getElementById("basketModalCloseBtn");
+            modelCloseBtn.click();
+        }
+
+        function setOrderSpanCount() {
+            let element = document.getElementById("orderSpanCount");
+            element.innerHTML = orders.length;
+        }
+
+        function showMyOrder() {
+            let tbody = document.getElementById("orderTBody");
+
+            let element = "";
+            for (let i = 0; i < orders.length; i++) {    
+                let date =  orders[i].date.getDate()+"."+orders[i].date.getMonth()+"."+orders[i].date.getFullYear() + " " + orders[i].date.getHours()+":"+orders[i].date.getMinutes()+":"+orders[i].date.getSeconds();                         
+                
+                element += `
+                <tr>
+                            <td>${i + 1}</td>
+                            <td>${date}</td>
+                            <td>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Ürün Adı</th>
+                                            <th>Ürün Resmi</th>
+                                            <th>Ürün Adet</th>
+                                            <th>Fiyat</th>
+                                            <th>Toplam</th>                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        `
+                                        let products = "";
+                                        for (let x = 0; x < orders[i].baskets.length; x++) {
+                                            products += `
+                                            <tr>
+                                              <td>${x + 1}</td>
+                                              <td>${orders[i].baskets[x].name}</td>
+                                              <td><img src="${orders[i].baskets[x].image}" width="100"></td>
+                                              <td>1</td>
+                                              <td>${orders[i].baskets[x].price}</td>
+                                              <td>${orders[i].baskets[x].price * 1}</td>                                                
+                                            </tr>
+                                                        `
+                                        }
+                                        element += products;
+
+                                        let part2 = `   
+                                        <tr class="alert alert-danger">
+                                            <td colspan="5">Toplam</td>
+                                            <td>${orders[i].total}</td>
+                                        </tr>                                     
+                                    </tbody>
+                                </table>
+                            </td>
+                           </tr>
+                `
+
+                element += part2;
+            }
+
+            tbody.innerHTML = element;
+        }
+    </script>
+</body>
+
+</html>
